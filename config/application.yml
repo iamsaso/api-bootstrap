@@ -1,0 +1,18 @@
+default: &default
+  github_token: <%=ENV['GITHUB_TOKEN']%>
+  github_web_endpoint: 'https://github.cbhq.net/'
+  github_api_endpoint: 'https://github.cbhq.net/api/v3/'
+  github_webhook_url: <%=ENV['GITHUB_WEBHOOK_URL']%>
+  github_webhook_events: ['push', 'pull_request', 'issues', 'issue_comment']
+  github_bot_username: 'heimdall'
+  redis_url: 'redis://boot2docker:6379/0'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+  redis_url: <%=ENV['REDIS_URL']%>

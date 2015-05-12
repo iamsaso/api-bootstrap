@@ -1,0 +1,26 @@
+<h2>
+    <a href="<%= @client.name %>"><%= @client.website %></a> is requiring your resource access: <span><%= @scope.to_s %></span>
+</h2>
+
+<!-- :deny -->
+<form action="/oauth/authorize" method="post" class="deny">
+    <input type="hidden" name="client_id" value="<%= @client.identifier %>">
+    <input type="hidden" name="response_type" value="<%= @response_type %>">
+    <input type="hidden" name="redirect_uri" value="<%= @redirect_uri %>">
+    <input type="hidden" name="scope" value="<%= @scope %>">
+
+    <input type="hidden" name="deny" value="1">
+    <button type="submit">Deny</button>
+</form>
+
+<!-- :approve -->
+<form action="/oauth/authorize" method="post" class="allow">
+    <input type="hidden" name="client_id" value="<%= @client.identifier %>">
+    <input type="hidden" name="response_type" value="<%= @response_type %>">
+    <input type="hidden" name="redirect_uri" value="<%= @redirect_uri %>">
+    <input type="hidden" name="scope" value="<%= @scope %>">
+
+    <input type="hidden" name="approve" value="1">
+    <button type="submit">Allow</button>
+</form>
+
