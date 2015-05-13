@@ -2,7 +2,7 @@ require_relative "./api/base"
 require_relative "./controllers/base"
 
 module App
-  class Run
+  class Base
     def initialize
       @filenames = ['', '.html']
       @rack_static = ::Rack::Static.new(
@@ -10,6 +10,14 @@ module App
         root: File.expand_path('../../public', __FILE__),
         urls: %w(/)
       )
+    end
+
+    def self.config
+      @config ||= Config.load!(filename: File.expand_path('../../config/application.yml', __FILE__), env: ENV['RACK_ENV'])
+    end
+
+    def self.session
+      @session ||= {}
     end
 
     # rubocop:disable MethodLength
@@ -41,7 +49,7 @@ module App
           run API::Base
         end
 
-        run App::Run.new
+        run App::Base.new
       end.to_app
     end
   end

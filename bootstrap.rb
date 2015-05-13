@@ -17,7 +17,7 @@ Dir.glob(File.expand_path("./app/models/**/*.rb")).each do |file|
   require file
 end
 
-require_relative './app/run'
+require_relative './app/base'
 
 # init
 Dotenv.load

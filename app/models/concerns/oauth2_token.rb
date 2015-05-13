@@ -17,7 +17,6 @@ module Concerns
     end
 
     def expires_in
-      puts self.inspect
       (expires_at - Time.now.utc).to_i
     end
 

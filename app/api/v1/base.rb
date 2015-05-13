@@ -17,7 +17,11 @@ module API
       helpers do
         def require_oauth_token!
           @current_token = request.env[Rack::OAuth2::Server::Resource::ACCESS_TOKEN]
+
           fail Rack::OAuth2::Server::Resource::Bearer::Unauthorized unless @current_token
+
+          App::Base.session[:current_token] = @current_token
+          App::Base.session[:current_user] = User.find_by_id(@current_token.user_id)
         end
       end
 

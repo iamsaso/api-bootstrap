@@ -2,7 +2,6 @@ module Controllers
   class OAuth2 < Controllers::Base
     helpers do
       def scope(value: [], to_string: false)
-        puts value.inspect
         s = value.join(" ").gsub(",", " ").gsub(/\s+/, ' ')
         to_string ? s : s.split(" ")
       end

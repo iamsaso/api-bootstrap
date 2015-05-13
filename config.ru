@@ -1,3 +1,3 @@
 require_relative "./bootstrap"
 
-run App::Run.instance
+run App::Base.instance
